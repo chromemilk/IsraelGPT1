@@ -11,7 +11,7 @@ if not st.secrets:
     st.error("No keys found")
     st.stop()
 else:
-    st.write(f"Keys detected: {list(st.secrets.keys())}")
+    st.write(f"Keys detected: LLM, WEB_SEARCH")
 
 
 if "GROQ_API_KEY" not in st.secrets:
