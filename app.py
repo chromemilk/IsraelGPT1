@@ -11,7 +11,7 @@ if not st.secrets:
     st.error("No keys found")
     st.stop()
 else:
-    st.write(f"Secrets found. Keys detected: {list(st.secrets.keys())}")
+    st.write(f"Keys detected: {list(st.secrets.keys())}")
 
 
 if "GROQ_API_KEY" not in st.secrets:
@@ -28,7 +28,6 @@ client = Groq(api_key=GROQ_API_KEY)
 tavily = TavilyClient(api_key=TAVILY_API_KEY)
 
 def is_safe(user_prompt):
-    return True
     try:
         completion = client.chat.completions.create(
             # Llama Guard 3 8B is the standard, fast safety model on Groq
