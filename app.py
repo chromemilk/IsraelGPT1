@@ -7,7 +7,20 @@ import os
 from groq import Groq
 from tavily import TavilyClient
 
+if not st.secrets:
+    st.error("No keys found!")
+    st.stop()
+else:
+    st.write(f"Secrets found. Keys detected: {list(st.secrets.keys())}")
 
+
+if "GROQ_API_KEY" not in st.secrets:
+    st.error("GROQ_API_KEY' is missing from secrets.")
+else:
+    key_len = len(st.secrets["GROQ_API_KEY"])
+    st.write(f" GROQ_API_KEY found (Length: {key_len} chars)")
+
+    
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 TAVILY_API_KEY = st.secrets["TAVILY_API_KEY"]
 
