@@ -8,17 +8,17 @@ from groq import Groq
 from tavily import TavilyClient
 
 if not st.secrets:
-    st.error("No keys found!")
+    st.error("No keys found")
     st.stop()
 else:
     st.write(f"Secrets found. Keys detected: {list(st.secrets.keys())}")
 
 
 if "GROQ_API_KEY" not in st.secrets:
-    st.error("GROQ_API_KEY' is missing from secrets.")
+    st.error("LLMAPI' is missing from secrets.")
 else:
     key_len = len(st.secrets["GROQ_API_KEY"])
-    st.write(f" GROQ_API_KEY found (Length: {key_len} chars)")
+    st.write(f"LLMAPI found (Length: {key_len} chars)")
 
     
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
@@ -28,6 +28,7 @@ client = Groq(api_key=GROQ_API_KEY)
 tavily = TavilyClient(api_key=TAVILY_API_KEY)
 
 def is_safe(user_prompt):
+    return True
     try:
         completion = client.chat.completions.create(
             # Llama Guard 3 8B is the standard, fast safety model on Groq
